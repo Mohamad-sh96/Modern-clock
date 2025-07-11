@@ -1,0 +1,118 @@
+/* Custom styles for the clock */
+/* Note: TailwindCSS is still used for some base styling in the HTML. */
+body {
+    font-family: 'Inter', sans-serif;
+    /* bg-gray-900 from HTML is equivalent to #111827, 
+       but we set a similar dark color here as a base. */
+    background-color: #121826; 
+}
+
+.clock-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem;
+}
+
+/* Analog Clock Styles */
+.analog-clock {
+    width: 90vw;
+    height: 90vw;
+    max-width: 300px;
+    max-height: 300px;
+    background-color: #1f2937; /* Darker gray */
+    border-radius: 50%;
+    border: 8px solid #374151; /* Medium gray border */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(0, 0, 0, 0.5);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.analog-clock .center-dot {
+    width: 12px;
+    height: 12px;
+    background-color: #f3f4f6; /* Light gray */
+    border-radius: 50%;
+    position: absolute;
+    z-index: 11;
+}
+
+.analog-clock .hand {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform-origin: bottom;
+    border-radius: 50px;
+    transition: transform 0.1s cubic-bezier(0.4, 2.3, 0.6, 1);
+    transform: translateX(-50%); /* Start centered */
+}
+
+.analog-clock .hour-hand {
+    width: 6px;
+    height: 25%;
+    background-color: #f3f4f6; /* Light gray */
+    z-index: 8;
+}
+
+.analog-clock .minute-hand {
+    width: 4px;
+    height: 35%;
+    background-color: #9ca3af; /* Gray */
+    z-index: 9;
+}
+
+.analog-clock .second-hand {
+    width: 2px;
+    height: 40%;
+    background-color: #ef4444; /* Red */
+    z-index: 10;
+}
+
+/* Hour markers for the analog clock */
+.analog-clock .marker {
+    position: absolute;
+    width: 2px;
+    height: 8px;
+    background-color: #6b7280; /* Darker gray */
+}
+
+.analog-clock .marker.marker-3,
+.analog-clock .marker.marker-6,
+.analog-clock .marker.marker-9,
+.analog-clock .marker.marker-12 {
+    width: 4px;
+    height: 12px;
+    background-color: #d1d5db; /* Lighter gray */
+}
+
+/* Digital Clock Styles */
+.digital-clock {
+    font-family: 'Orbitron', sans-serif;
+    color: #e5e7eb;
+    text-shadow: 0 0 20px rgba(16, 185, 129, 0.5); /* Glowing effect */
+    letter-spacing: 0.1em;
+}
+
+/* Responsive adjustments */
+@media (min-width: 640px) {
+    .clock-container {
+        flex-direction: row;
+        gap: 4rem;
+    }
+    .analog-clock {
+        width: 300px;
+        height: 300px;
+    }
+     .analog-clock .marker {
+        transform-origin: 50% 150px; /* Fixed for larger screens */
+    }
+}
+@media (max-width: 639px) {
+    .analog-clock .marker {
+        transform-origin: 50% 45vw; /* Adjust based on clock radius */
+    }
+}
